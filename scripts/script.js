@@ -4,8 +4,9 @@ let computerScore = 0;
 let playerScore = 0;
 let result;
 let exit = 0;
+let invalid = 0;
 
-document.getElementById("play").onclick = game;
+document.getElementById("play").onclick = gameStart;
 
 function computerPlay() {
     pick = Math.floor(Math.random() * 3);
@@ -21,7 +22,8 @@ function playerPlay() {
 }
 
 function invalidSelection() {
-    alert('Your input was not valid.\n` + `Try again.');
+    alert(`Your input was not valid.\n` + `Try again.`);
+    invalid = 1;
 }
 
 //function undefSelection() {
@@ -50,13 +52,13 @@ return "computer win";
 }
 
 function tie(playerSelection, computerSelection) {
-    alert(`You picked ${playerSelection} and the computer picked ${computerSelection}. This is a tie.`)
+    alert(`You picked ${playerSelection} and the computer picked ${computerSelection}.` + `This is a tie.`)
     console.log(`${playerScore}, ${computerScore}`);
 return "tie";
 }
 
 function showScore() {
-    if (exit === 0) {
+    if (exit === 0 && invalid === 0) {
         if (playerScore < 5 && computerScore < 5){
     alert(`Your score is ${playerScore} and the computer's score is ${computerScore}.\n` + `First one to 5 wins!`);
         } else {
@@ -87,6 +89,13 @@ function exitLoop() {
     alert(`Goodbye, thank you for playing!\n` + `Feel free to provide any feedback!`);
 }
 
+function gameStart() {
+    if (confirm(`Do you want to play Rock, Paper, Scissors?\n` + `First to 5 wins!`)) {
+        game();
+    } else {
+        (alert("Okay then."))
+    }
+}
 function game() {
     exit = 0;
     computerScore = 0;
@@ -107,6 +116,7 @@ function game() {
 
 function playRound(computerSelection, playerSelection) {
    console.log(`${playerSelection}`);
+   invalid = 0;
     (playerSelection === "exit") ? result = exitLoop : (playerSelection === computerSelection) ? result = tie : evaluate();
     
     function evaluate() { 
