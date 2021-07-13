@@ -15,6 +15,17 @@ body {
     margin : 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
+    background-color: rgb(160, 150, 248);
+}
+#readme:link, #readme:visited, #readme:hover {
+color: white;
+font-size: 1.2rem;
+width: 100%;
+background-color: rebeccapurple;
+height:fit-content;
+margin: 0 auto;
+text-align: center;
 }
 
 #play {
@@ -23,4 +34,15 @@ body {
     width: 30%;
     height: 15%;
     cursor: pointer;
+    color: cyan;
+    text-decoration: underline;
+    transition: text-decoration-color 1s linear, box-shadow linear 1s;
+    background-color: rgb(70, 53, 67);
+    border-radius: 10px;
+    border-color: transparent;
+}
+
+#play:hover {
+    text-decoration-color: red;
+    box-shadow: 0 0 10px 5px black;
 }
