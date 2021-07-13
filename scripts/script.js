@@ -8,6 +8,68 @@ let invalid = 0;
 
 document.getElementById("play").onclick = gameStart;
 
+function gameStart() {
+    if (confirm(`Do you want to play Rock, Paper, Scissors?\n` + `First to 5 wins!`)) {
+        game();
+    } else {
+        (alert("Okay then."))
+    }
+}
+
+function game() {
+    exit = 0;
+    computerScore = 0;
+    playerScore = 0;
+    playerSelection = "";
+    computerSelection = "";
+
+    while (computerScore < 5 && playerScore < 5 && exit === 0) {
+    playRound(computerPlay(), playerPlay());
+    showScore();
+    }
+
+    if (exit === 0) {
+    end(computerScore, playerScore);
+    playAgain();
+    }
+}
+
+function playRound(computerSelection, playerSelection) {
+   console.log(`${playerSelection}`);
+   invalid = 0;
+    (playerSelection === "exit") ? result = exitLoop : (playerSelection === computerSelection) ? result = tie : evaluate();
+    
+    function evaluate() { 
+        if (playerSelection === "rock") {
+            if (computerSelection === "scissors") {
+            result = playerWin;
+        } else if (computerSelection === "paper") {
+            result = computerWin;
+        }
+    
+    } else if (playerSelection === "paper") {
+        if (computerSelection === "rock") {
+            result = playerWin;
+        } else if (computerSelection === "scissors") {
+            result = computerWin;
+        }
+    
+    } else if (playerSelection === "scissors") {
+        if (computerSelection === "paper") {
+            result = playerWin;
+        } else if (computerSelection === "rock") {
+            result = computerWin;
+        }
+    
+    } else {
+        result = invalidSelection;
+    }
+    }
+
+    console.log(`${playerSelection}, ${computerSelection}`);
+    return result(capitalize(playerSelection), capitalize(computerSelection));
+}
+
 function computerPlay() {
     pick = Math.floor(Math.random() * 3);
     pick = (pick == 0) ? "rock" : (pick == 1) ? "paper" : "scissors";
@@ -32,10 +94,6 @@ function invalidSelection() {
    // () => playerPlay());
 // }
 // could not get the return to work so i put this in playerPlay()
-
-function capitalize(x) {
-    return (x.slice(0,1).toUpperCase() + x.slice(1).toLowerCase())
-}
 
 function playerWin(playerSelection, computerSelection) {
     alert(`You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${playerSelection} beats ${computerSelection}.\n` + `You win this round.`)
@@ -89,63 +147,6 @@ function exitLoop() {
     alert(`Goodbye, thank you for playing!\n` + `Feel free to provide any feedback!`);
 }
 
-function gameStart() {
-    if (confirm(`Do you want to play Rock, Paper, Scissors?\n` + `First to 5 wins!`)) {
-        game();
-    } else {
-        (alert("Okay then."))
-    }
-}
-function game() {
-    exit = 0;
-    computerScore = 0;
-    playerScore = 0;
-    playerSelection = "";
-    computerSelection = "";
-
-    while (computerScore < 5 && playerScore < 5 && exit === 0) {
-    playRound(computerPlay(), playerPlay());
-    showScore();
-    }
-
-    if (exit === 0) {
-    end(computerScore, playerScore);
-    playAgain();
-    }
-}
-
-function playRound(computerSelection, playerSelection) {
-   console.log(`${playerSelection}`);
-   invalid = 0;
-    (playerSelection === "exit") ? result = exitLoop : (playerSelection === computerSelection) ? result = tie : evaluate();
-    
-    function evaluate() { 
-        if (playerSelection === "rock") {
-            if (computerSelection === "scissors") {
-            result = playerWin;
-        } else if (computerSelection === "paper") {
-            result = computerWin;
-        }
-    
-    } else if (playerSelection === "paper") {
-        if (computerSelection === "rock") {
-            result = playerWin;
-        } else if (computerSelection === "scissors") {
-            result = computerWin;
-        }
-    
-    } else if (playerSelection === "scissors") {
-        if (computerSelection === "paper") {
-            result = playerWin;
-        } else if (computerSelection === "rock") {
-            result = computerWin;
-        }
-    
-    } else {
-        result = invalidSelection;
-    }
-    }
-
-    console.log(`${playerSelection}, ${computerSelection}`);
-    return result(capitalize(playerSelection), capitalize(computerSelection));
+function capitalize(x) {
+    return (x.slice(0,1).toUpperCase() + x.slice(1).toLowerCase())
 }
