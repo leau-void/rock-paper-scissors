@@ -2,11 +2,33 @@
 <html>
     <head>
 <meta charset="UTC-8">
+<link rel="stylesheet" href="webfont_openDys/stylesheet.css">
 <link rel="stylesheet" href="styles/style.css">
+<link rel="icon" href="favicon.png">
 <script src="scripts/script.js" defer></script>
 </head>
 <body>
-    <a href="README.md" id="readme">README</a>
-<button id="play">Play!</button>
+ <a href="README.md" id="readme">README</a>
+
+
+<div id="container">
+
+    <div class="display" id="display">
+        <div id="score-human" class="scores">0</div>
+        <div id="human" class="display-child"><img src="images/rps-human.png"></div>
+        <div id="cpu" class="display-child"><img src="images/rps-cpu.png"></div>
+        <div id="score-cpu" class="scores">0</div>
+    </div>
+
+    <div id="div-btns">
+        <button class="btns" id="rock-btn"></button>
+        <button class="btns" id="paper-btn"></button>
+        <button class="btns" id="scissors-btn"></button>
+    </div>
+
+    <div class="display" id="display-text"></div>
+
+
+</div>
 </body>
 </html>
