@@ -27,7 +27,7 @@ body {
 color: white;
 font-size: 1.2rem;
 width: 100%;
-background-color: rebeccapurple;
+background-color: rgba(102, 51, 153, 0.1);
 height:fit-content;
 margin: 0 auto;
 text-align: center;
@@ -56,22 +56,22 @@ text-align: center;
 
 #container {
     width: 80%;
-    height: 85%;
+    height: 92%;
     margin: auto auto;
     background-color: rgba(255, 0, 100, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     border-radius: 20px;
 }
 
 #display {
     width: 80%;
-    margin: 2% auto;
+    margin: 1% auto;
     padding: 2% 0;
     height: fit-content;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     
 }
@@ -79,6 +79,14 @@ text-align: center;
 .scores {
     padding: 1%;
     margin: 1%;
+    border: 2px solid whitesmoke;
+    border-radius: 20px;
+    color: whitesmoke;
+    cursor: default;
+}
+
+.higher {
+    text-decoration: underline;
 }
 
 #human {
@@ -87,6 +95,8 @@ text-align: center;
     min-width: 120px;
     min-height: 120px;
    margin: 2%;
+   padding-right: 5%;
+   border-right: 8px double rgb(17, 11, 43);
 }
 
 #cpu {
@@ -100,6 +110,11 @@ text-align: center;
 img {
     width: 100%;
     height: 100%;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
 }
 
 #div-btns {
@@ -120,6 +135,7 @@ button {
     padding: 40px;
     border-radius: 20px;
     transition: transform 0.08s linear;
+    cursor: pointer;
 }
 
 button:hover {
@@ -150,3 +166,37 @@ background-position: center;
 button:active {
     background-color: rgba(255, 0, 50, 0.1);
 }
+
+#display-text {
+    text-align: center;
+    margin: 0 auto;
+    height: fit-content;
+    max-height: 18%;
+    width: 80%;
+    background-color: rgba(31, 31, 70, 0.5);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: baseline;
+}
+
+p {
+    border-radius: 20px;
+    min-height: 2.5rem;
+    max-height: 100%;
+    border: 2px solid black;
+    margin: 5px 5px;
+    line-height: 2.5rem;
+    overflow: hidden;
+    cursor: default;
+}
+
+p, .scores, img {
+    -webkit-touch-callout: none;
+      -webkit-user-select: none;
+       -khtml-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+  }
