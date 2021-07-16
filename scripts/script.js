@@ -3,41 +3,60 @@ let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
 let result;
-let exit = 0;
-let invalid = 0;
+let again = 0;
 
-document.getElementById("play").onclick = gameStart;
+let text = document.querySelector("#text");
+let textAgain = document.querySelector("#again");
+let scoreHuman = document.querySelector("#score-human");
+let scoreCpu = document.querySelector("#score-cpu");
+let human = document.querySelector("#human-img");
+let cpu = document.querySelector("#cpu-img");
+let buttons = document.querySelectorAll("button");
+let playerBtns = document.querySelectorAll(".playBtns")
 
-function gameStart() {
-    if (confirm(`Do you want to play Rock, Paper, Scissors?\n` + `First to 5 wins!`)) {
-        game();
-    } else {
-        (alert("Okay then."))
-    }
-}
 
-function game() {
-    exit = 0;
-    computerScore = 0;
-    playerScore = 0;
-    playerSelection = "";
+playerBtns.forEach(
+    (button) => {
+        button.addEventListener("click", () => {
+            game(button.id);
+        });
+})
+
+function game(playerSelection) {
+    scoreCpu.textContent = computerScore;
+    scoreHuman.textContent = playerScore;
+    textAgain.textContent = "";
     computerSelection = "";
 
-    while (computerScore < 5 && playerScore < 5 && exit === 0) {
-    playRound(computerPlay(), playerPlay());
-    showScore();
+    if (playerScore < 5 && computerScore < 5) {
+        playRound(computerPlay(), playerSelection);
     }
 
-    if (exit === 0) {
-    end(computerScore, playerScore);
-    playAgain();
+    if (playerScore > computerScore) {
+         scoreHuman.classList.add("leading");
+         scoreCpu.classList.remove("leading");
+        } else if (computerScore > playerScore) {
+        scoreCpu.classList.add("leading");
+        scoreHuman.classList.remove("leading");
+        } else if (playerScore === computerScore) {
+        scoreHuman.classList.add("leading");
+        scoreCpu.classList.add("leading");
+        }   
+
+    if (playerScore === 5 || computerScore === 5) {
+        end();
     }
 }
 
 function playRound(computerSelection, playerSelection) {
-   console.log(`${playerSelection}`);
-   invalid = 0;
-    (playerSelection === "exit") ? result = exitLoop : (playerSelection === computerSelection) ? result = tie : evaluate();
+(playerSelection === "rock") ? human.setAttribute("src", "images/rock-human.png") : (playerSelection === "paper") ?
+human.setAttribute("src", "images/paper-human.png") : human.setAttribute("src", "images/scissors-human.png");
+
+(computerSelection === "rock") ? cpu.setAttribute("src", "images/rock-cpu.png") : (computerSelection === "paper") ? 
+cpu.setAttribute("src", "images/paper-cpu.png") : cpu.setAttribute("src", "images/scissors-cpu.png");
+
+
+ (playerSelection === computerSelection) ? result = tie : evaluate();
     
     function evaluate() { 
         if (playerSelection === "rock") {
@@ -61,12 +80,9 @@ function playRound(computerSelection, playerSelection) {
             result = computerWin;
         }
     
-    } else {
-        result = invalidSelection;
     }
     }
 
-    console.log(`${playerSelection}, ${computerSelection}`);
     return result(capitalize(playerSelection), capitalize(computerSelection));
 }
 
@@ -76,75 +92,33 @@ function computerPlay() {
     return pick;
 }
 
-function playerPlay() {
-    pick = prompt(`Pick Rock, Paper or Scissors.`);
-    (pick != undefined && pick != null) ? pick = pick.toLowerCase() : pick = (confirm("Do you want to quit?") ? "exit" : playerPlay()); // check if pick is defined (not null or undef)
-     // lowercare if it is defined (error if done before, bc attempts to lowercase null)
-    return pick;
-}
-
-function invalidSelection() {
-    alert(`Your input was not valid.\n` + `Try again.`);
-    invalid = 1;
-}
-
-//function undefSelection() {
- //   return ((confirm("Do you want to quit?")) ? 
-  //  () => return "exit" : 
-   // () => playerPlay());
-// }
-// could not get the return to work so i put this in playerPlay()
-
 function playerWin(playerSelection, computerSelection) {
-    alert(`You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${playerSelection} beats ${computerSelection}.\n` + `You win this round.`)
-    playerScore = ++playerScore;
-    console.log(`${playerScore}, ${computerScore}`);
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${playerSelection} beats ${computerSelection}.\n` + `You win this round.`;
+    scoreHuman.textContent = ++playerScore;
 return "player win";
 }
 
 function computerWin(playerSelection, computerSelection) {
-    alert(`You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${computerSelection} beats ${playerSelection}.\n` + `You lose this round.`)
-    computerScore = ++computerScore;
-    console.log(`${playerScore}, ${computerScore}`);
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${computerSelection} beats ${playerSelection}.\n` + `You lose this round.`;
+    scoreCpu.textContent = ++computerScore;
 return "computer win";
 }
 
 function tie(playerSelection, computerSelection) {
-    alert(`You picked ${playerSelection} and the computer picked ${computerSelection}.` + `This is a tie.`)
-    console.log(`${playerScore}, ${computerScore}`);
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.` + `This is a tie.`;
 return "tie";
-}
-
-function showScore() {
-    if (exit === 0 && invalid === 0) {
-        if (playerScore < 5 && computerScore < 5){
-    alert(`Your score is ${playerScore} and the computer's score is ${computerScore}.\n` + `First one to 5 wins!`);
-        } else {
-            alert(`Your score is ${playerScore} and the computer's score is ${computerScore}.`);
-        }
-    } 
 }
 
 function end() {
     console.log(`player score : ${playerScore} // computer score : ${computerScore}`);
     let endmessage = (playerScore > computerScore) ?
-     () => alert(`You win!`) :
-     () => alert(`You lose!`);
-     return endmessage();
-}
+     () => text.textContent += ` Wow! You win the game!` :
+     () => text.textContent += ` Ooof! You lose the game!`;
+    endmessage();
 
-function playAgain() {
-    let again = (confirm("Do you want to play again?")) ?
-    () => game() :
-    () => alert(`Goodbye, thank you for playing!\n` + `Feel free to provide any feedback!`);
-
-    again();
-}
-
-function exitLoop() {
-    exit = 1;
-    pick = "exit";
-    alert(`Goodbye, thank you for playing!\n` + `Feel free to provide any feedback!`);
+     textAgain.textContent = "Make a choice to play again!";
+     computerScore = 0;
+     playerScore = 0;
 }
 
 function capitalize(x) {

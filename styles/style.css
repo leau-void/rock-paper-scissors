@@ -33,27 +33,6 @@ margin: 0 auto;
 text-align: center;
 }
 
-/*
-#play {
-    font-size: 4rem;
-    margin : auto;
-    width: 30%;
-    height: 15%;
-    cursor: pointer;
-    color: cyan;
-    text-decoration: underline;
-    transition: text-decoration-color 1s linear, box-shadow linear 1s;
-    background-color: rgb(70, 53, 67);
-    border-radius: 10px;
-    border-color: transparent;
-}
-
- #play:hover {
-    text-decoration-color: red;
-    box-shadow: 0 0 10px 5px black;
-}
-*/
-
 #container {
     width: 80%;
     height: 92%;
@@ -85,8 +64,9 @@ text-align: center;
     cursor: default;
 }
 
-.higher {
+.leading {
     text-decoration: underline;
+    box-shadow: 0 0 3px 3px whitesmoke;
 }
 
 #human {
@@ -110,11 +90,7 @@ text-align: center;
 img {
     width: 100%;
     height: 100%;
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
+    opacity: 80%;
 }
 
 #div-btns {
@@ -145,19 +121,19 @@ transform: scale(1.05);
 }
 
 
-#rock-btn {
+#rock {
 background-image: url(../images/rock.png);
 background-repeat: no-repeat;
 background-position: center;
 }
 
-#paper-btn {
+#paper {
 background-image: url(../images/paper.png);
 background-repeat: no-repeat;
 background-position: center;
 }
 
-#scissors-btn {
+#scissors {
 background-image: url(../images/scissors.png);
 background-repeat: no-repeat;
 background-position: center;
@@ -181,7 +157,7 @@ button:active {
     justify-content: baseline;
 }
 
-p {
+#text {
     border-radius: 20px;
     min-height: 2.5rem;
     max-height: 100%;
@@ -192,7 +168,11 @@ p {
     cursor: default;
 }
 
-p, .scores, img {
+#again {
+    text-align: center;
+}
+
+p, .scores, img, a {
     -webkit-touch-callout: none;
       -webkit-user-select: none;
        -khtml-user-select: none;
@@ -200,3 +180,10 @@ p, .scores, img {
           -ms-user-select: none;
               user-select: none;
   }
+
+img, .display, a {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+}
