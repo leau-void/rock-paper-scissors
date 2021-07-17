@@ -3,7 +3,6 @@ let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
 let result;
-let again = 0;
 
 let text = document.querySelector("#text");
 let textAgain = document.querySelector("#again");
@@ -93,19 +92,19 @@ function computerPlay() {
 }
 
 function playerWin(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${playerSelection} beats ${computerSelection}.\n` + `You win this round.`;
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n`  + `${playerSelection} beats ${computerSelection}.\r\n` + ` You win this round.\r\n`;
     scoreHuman.textContent = ++playerScore;
 return "player win";
 }
 
 function computerWin(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\n` + `${computerSelection} beats ${playerSelection}.\n` + `You lose this round.`;
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + `${computerSelection} beats ${playerSelection}.\r\n` + ` You lose this round.\r\n`;
     scoreCpu.textContent = ++computerScore;
 return "computer win";
 }
 
 function tie(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.` + `This is a tie.`;
+    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + ` This is a tie.`;
 return "tie";
 }
 
