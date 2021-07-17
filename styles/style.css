@@ -39,9 +39,8 @@ text-align: center;
 
 #container {
     width: 80%;
-    height: 92%;
-    margin: auto auto;
-    margin-bottom: 1.5rem;
+    height: fit-content;
+    margin: 1rem auto;
     background-color: rgba(255, 0, 100, 0.1);
     display: flex;
     flex-direction: column;
@@ -51,13 +50,13 @@ text-align: center;
 
 #display {
     width: 80%;
-    margin: 1% auto;
-    padding: 2% 0;
+    margin: 1rem auto;
+    padding: 1rem 0;
     height: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    position: relative;
 }
 
 .scores {
@@ -101,7 +100,7 @@ img {
 #div-btns {
     width: 80%;
     background-color: rgba(102, 51, 153, 0.3);
-    margin: 0 auto;
+    margin: 1rem auto;
     padding: 2rem 0;
     display: flex;
     justify-content: space-evenly;
@@ -177,7 +176,8 @@ button:active {
 
 #again {
     text-align: center;
-    margin-top: -0.3rem;
+    margin-bottom: 1.5rem;
+
     height: 1rem;
 
 }
