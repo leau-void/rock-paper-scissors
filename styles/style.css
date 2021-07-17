@@ -11,16 +11,15 @@ html {
     margin : 0;
     padding: 0;
     background: linear-gradient(45deg, rgb(153, 230, 243), rgb(35, 5, 44));
+    background-repeat: no-repeat;
+    background-position:center;
 
 }
 
 body {
-    background: linear-gradient(45deg, rgb(153, 230, 243), rgb(35, 5, 44));
     min-height: 700px;
     height: 100vh;
     width: 100%;
-    background-repeat: no-repeat;
-    background-position: fixed;
     margin : 0;
     padding: 0;
     display: flex;
