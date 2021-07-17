@@ -19,6 +19,8 @@ body {
     min-height: 700px;
     height: 100vh;
     width: 100%;
+    background-repeat: no-repeat;
+    background-position: fixed;
     margin : 0;
     padding: 0;
     display: flex;
