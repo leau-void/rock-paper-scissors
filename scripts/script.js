@@ -13,6 +13,12 @@ let cpu = document.querySelector("#cpu-img");
 let buttons = document.querySelectorAll("button");
 let playerBtns = document.querySelectorAll(".playBtns")
 
+const width  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
+const height = window.innerHeight|| document.documentElement.clientHeight|| 
+document.body.clientHeight;
+
+console.log(width, height);
 
 playerBtns.forEach(
     (button) => {
