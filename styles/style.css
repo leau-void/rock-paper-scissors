@@ -222,6 +222,38 @@ button:active {
     }
 }
 
+@media (max-height: 730px) {
+    #div-btns {
+        padding: 0;
+    }
+
+    #display {
+        margin: 1rem auto 0 auto;
+        padding: 0;
+    }
+}
+
+@media (max-width: 440px) {
+    #container {
+        width: 100%;
+        height: 100%;
+    }
+   
+    #human {
+        max-width: 80px;
+        max-height: 80px;
+    }
+    #cpu {
+        max-width: 80px;
+        max-height: 80px;
+    }
+    button {
+        width: 100%;
+        height: auto;
+        background-size: 60px;
+    }
+}
+
 p, .scores, img, a {
     -webkit-touch-callout: none;
       -webkit-user-select: none;
