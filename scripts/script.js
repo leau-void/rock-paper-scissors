@@ -2,23 +2,15 @@ let computerSelection;
 let playerSelection;
 let computerScore = 0;
 let playerScore = 0;
-let result;
+let resultRound;
 
-let text = document.querySelector("#text");
-let textAgain = document.querySelector("#again");
+let gameText = document.querySelector("#game-text");
+let againText = document.querySelector("#again-text");
 let scoreHuman = document.querySelector("#score-human");
 let scoreCpu = document.querySelector("#score-cpu");
-let human = document.querySelector("#human-img");
-let cpu = document.querySelector("#cpu-img");
-let buttons = document.querySelectorAll("button");
+let humanImg = document.querySelector("#human-img");
+let cpuImg = document.querySelector("#cpu-img");
 let playerBtns = document.querySelectorAll(".playBtns")
-
-const width  = window.innerWidth || document.documentElement.clientWidth || 
-document.body.clientWidth;
-const height = window.innerHeight|| document.documentElement.clientHeight|| 
-document.body.clientHeight;
-
-console.log(width, height);
 
 playerBtns.forEach(
     (button) => {
@@ -30,7 +22,7 @@ playerBtns.forEach(
 function game(playerSelection) {
     scoreCpu.textContent = computerScore;
     scoreHuman.textContent = playerScore;
-    textAgain.textContent = "";
+    againText.textContent = "";
     computerSelection = "";
 
     if (playerScore < 5 && computerScore < 5) {
@@ -49,46 +41,46 @@ function game(playerSelection) {
         }   
 
     if (playerScore === 5 || computerScore === 5) {
-        end();
+        gameEnd();
     }
 }
 
 function playRound(computerSelection, playerSelection) {
-(playerSelection === "rock") ? human.setAttribute("src", "images/rock-human.png") : (playerSelection === "paper") ?
-human.setAttribute("src", "images/paper-human.png") : human.setAttribute("src", "images/scissors-human.png");
+(playerSelection === "rock") ? humanImg.setAttribute("src", "images/rock-human.png") : (playerSelection === "paper") ?
+humanImg.setAttribute("src", "images/paper-human.png") : humanImg.setAttribute("src", "images/scissors-human.png");
 
-(computerSelection === "rock") ? cpu.setAttribute("src", "images/rock-cpu.png") : (computerSelection === "paper") ? 
-cpu.setAttribute("src", "images/paper-cpu.png") : cpu.setAttribute("src", "images/scissors-cpu.png");
+(computerSelection === "rock") ? cpuImg.setAttribute("src", "images/rock-cpu.png") : (computerSelection === "paper") ? 
+cpuImg.setAttribute("src", "images/paper-cpu.png") : cpuImg.setAttribute("src", "images/scissors-cpu.png");
 
 
- (playerSelection === computerSelection) ? result = tie : evaluate();
+ (playerSelection === computerSelection) ? resultRound = tieRound : evaluateSelections();
     
-    function evaluate() { 
+    function evaluateSelections() { 
         if (playerSelection === "rock") {
             if (computerSelection === "scissors") {
-            result = playerWin;
+                resultRound = playerWinRound;
         } else if (computerSelection === "paper") {
-            result = computerWin;
+            resultRound = computerWinRound;
         }
     
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            result = playerWin;
+            resultRound = playerWinRound;
         } else if (computerSelection === "scissors") {
-            result = computerWin;
+            resultRound = computerWinRound;
         }
     
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            result = playerWin;
+            resultRound = playerWinRound;
         } else if (computerSelection === "rock") {
-            result = computerWin;
+            resultRound = computerWinRound;
         }
     
     }
     }
 
-    return result(capitalize(playerSelection), capitalize(computerSelection));
+    return resultRound(capitalize(playerSelection), capitalize(computerSelection));
 }
 
 function computerPlay() {
@@ -97,31 +89,28 @@ function computerPlay() {
     return pick;
 }
 
-function playerWin(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n`  + `${playerSelection} beats ${computerSelection}.\r\n` + ` You win this round.\r\n`;
+function playerWinRound(playerSelection, computerSelection) {
+    gameText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n`  + `${playerSelection} beats ${computerSelection}.\r\n` + ` You win this round.\r\n`;
     scoreHuman.textContent = ++playerScore;
-return "player win";
 }
 
-function computerWin(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + `${computerSelection} beats ${playerSelection}.\r\n` + ` You lose this round.\r\n`;
+function computerWinRound(playerSelection, computerSelection) {
+    gameText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + `${computerSelection} beats ${playerSelection}.\r\n` + ` You lose this round.\r\n`;
     scoreCpu.textContent = ++computerScore;
-return "computer win";
 }
 
-function tie(playerSelection, computerSelection) {
-    text.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + ` This is a tie.`;
-return "tie";
+function tieRound(playerSelection, computerSelection) {
+    gameText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}.\r\n` + ` This is a tie.`;
 }
 
-function end() {
-    console.log(`player score : ${playerScore} // computer score : ${computerScore}`);
-    let endmessage = (playerScore > computerScore) ?
-     () => text.textContent += ` Wow! You win the game!` :
-     () => text.textContent += ` Ooof! You lose the game!`;
-    endmessage();
+function gameEnd() {
 
-     textAgain.textContent = "Make a choice to play again!";
+    let endMessage = (playerScore > computerScore) ?
+     () => gameText.textContent += ` Wow! You win the game!` :
+     () => gameText.textContent += ` Ooof! You lose the game!`;
+    endMessage();
+
+     againText.textContent = "Make a choice to play again!";
      computerScore = 0;
      playerScore = 0;
 }
